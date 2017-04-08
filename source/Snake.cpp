@@ -1,5 +1,6 @@
 #include "Snake.h"
 #include <iostream>
+
 sf::Vector2f Snake::getPosition() const {
 	return posHead;
 }
@@ -38,11 +39,11 @@ void Snake::Update() {
 	if (posHead.x == 640)
 		posHead.x = 0;
 	else if (posHead.x < 0)
-		posHead.x = 640 - xVel;
+		posHead.x = 640.0f - xVel;
 	if (posHead.y == 480)
 		posHead.y = 0;
 	else if (posHead.y < 0)
-		posHead.y = 480 - yVel;
+		posHead.y = 480.0f - yVel;
 }
 
 Snake::Snake(sf::Vector2f posHead, int sizeTail = 0, std::string pathHead = "", std::string pathTail = "") {
@@ -62,5 +63,4 @@ Snake::Snake(sf::Vector2f posHead, int sizeTail = 0, std::string pathHead = "", 
 	xVel = tTail.getSize().x;
 	yVel = tTail.getSize().y;
 	dir = DIREC::DIREITA;
-	std::cout << Head.getScale().x << " " << Head.getScale().y << std::endl;
 }

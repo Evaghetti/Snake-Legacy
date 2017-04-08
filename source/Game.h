@@ -1,10 +1,13 @@
 #pragma once
 
 #include "Snake.h"
+#include "Fruit.h"
 #include <SFML\Graphics.hpp>
+
 class Game {
 	private:
 		Snake Player;
+		Fruit Apple;
 		sf::Sprite Tile;
 		sf::Texture tTile;
 		sf::RenderWindow window;

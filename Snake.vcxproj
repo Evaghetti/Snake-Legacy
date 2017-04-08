@@ -122,10 +122,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="source\Fruit.cpp" />
     <ClCompile Include="source\Game.cpp" />
     <ClCompile Include="source\Snake.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\Fruit.h" />
     <ClInclude Include="source\Game.h" />
     <ClInclude Include="source\Snake.h" />
   </ItemGroup>

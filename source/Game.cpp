@@ -1,7 +1,8 @@
 #include "Game.h"
 
 Game::Game(int largura, int altura, char * titulo) : window(sf::VideoMode(largura, altura), titulo),
-													 Player({ 320.0f, 240.0f }, 0, "images/head.png", "images/tail.png")
+													 Player({ 320.0f, 240.0f }, 0, "images/head.png", "images/tail.png"),
+													 Apple(64, 60)
 {
 	window.setFramerateLimit(5);
 	tTile.loadFromFile("images/grade.png");
@@ -38,6 +39,10 @@ void Game::gameDraw() {
 			window.draw(Tile);
 		}
 	}
+	Tile.setColor(sf::Color::Red);
+	Tile.setPosition(Apple.getPosition().x, Apple.getPosition().y);
+	window.draw(Tile);
+	Tile.setColor(sf::Color::White);
 	Player.Draw(window);
 	window.display();
 }
