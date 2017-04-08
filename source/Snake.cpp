@@ -42,7 +42,7 @@ void Snake::Update() {
 	if (posHead.y == 480)
 		posHead.y = 0;
 	else if (posHead.y < 0)
-		posHead.y = 480 - 64;
+		posHead.y = 480 - yVel;
 }
 
 Snake::Snake(sf::Vector2f posHead, int sizeTail = 0, std::string pathHead = "", std::string pathTail = "") {
