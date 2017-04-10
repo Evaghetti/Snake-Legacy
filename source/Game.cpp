@@ -29,6 +29,7 @@ void Game::gameUpdate() {
 			userInput(e.key.code);
 	}
 	Player.Update();
+	Player.eatFruit(Apple);
 }
 
 void Game::gameDraw() {
@@ -39,10 +40,7 @@ void Game::gameDraw() {
 			window.draw(Tile);
 		}
 	}
-	Tile.setColor(sf::Color::Red);
-	Tile.setPosition(Apple.getPosition().x, Apple.getPosition().y);
-	window.draw(Tile);
-	Tile.setColor(sf::Color::White);
+	Apple.draw(window);
 	Player.Draw(window);
 	window.display();
 }

@@ -11,6 +11,14 @@ void Snake::updateTail(){
 	posTail.at(sizeTail) = posHead;
 }
 
+void Snake::eatFruit(Fruit & Apple) const {
+	if (Apple.getPosition() == getPosition()) {
+		std::cout << "Entrou" << std::endl << Apple.getPosition().x << ' ' << Apple.getPosition().y;
+		Apple.newPosition();
+		std::cout << std::endl << Apple.getPosition().x << ' ' << Apple.getPosition().y;
+	}
+}
+
 void Snake::Draw(sf::RenderWindow& window) {
 	for (auto it : posTail) {
 		Tail.setPosition(it);

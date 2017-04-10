@@ -3,6 +3,7 @@
 #include <SFML\Graphics.hpp>
 #include <vector>
 #include <string>
+#include "Fruit.h"
 
 class Snake {
 	private:
@@ -16,6 +17,7 @@ class Snake {
 	public:
 		enum DIREC { CIMA, DIREITA, BAIXO, ESQUERDA } dir;
 		void Draw(sf::RenderWindow& window);
+		void eatFruit(Fruit &Apple) const;
 		void Update();
 		Snake(sf::Vector2f posHead, int sizeTail, std::string pathHead, std::string pathTail);
 };
