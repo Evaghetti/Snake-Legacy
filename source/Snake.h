@@ -7,7 +7,7 @@
 
 class Snake {
 	private:
-		int sizeTail, xVel, yVel;
+		int xVel, yVel;
 		std::vector<sf::Vector2f> posTail;
 		sf::Sprite Head, Tail;
 		sf::Texture tHead, tTail;
@@ -17,7 +17,7 @@ class Snake {
 	public:
 		enum DIREC { CIMA, DIREITA, BAIXO, ESQUERDA } dir;
 		void Draw(sf::RenderWindow& window);
-		void eatFruit(Fruit &Apple) const;
+		void eatFruit(Fruit &Apple);
 		void Update();
-		Snake(sf::Vector2f posHead, int sizeTail, std::string pathHead, std::string pathTail);
+		Snake(sf::Vector2f posHead ,std::string pathHead, std::string pathTail);
 };

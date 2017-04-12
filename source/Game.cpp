@@ -1,8 +1,8 @@
 #include "Game.h"
 
 Game::Game(int largura, int altura, char * titulo) : window(sf::VideoMode(largura, altura), titulo),
-													 Player({ 320.0f, 240.0f }, 0, "images/head.png", "images/tail.png"),
-													 Apple(64, 60)
+													 Player({ 320.0f, 240.0f }, "images/head.png", "images/tail.png"),
+													 Apple("images/fruit.png", 64, 60)
 {
 	window.setFramerateLimit(5);
 	tTile.loadFromFile("images/grade.png");

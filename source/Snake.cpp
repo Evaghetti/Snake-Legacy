@@ -1,21 +1,20 @@
 #include "Snake.h"
 #include <iostream>
-
+#include <exception>
 sf::Vector2f Snake::getPosition() const {
 	return posHead;
 }
 
 void Snake::updateTail(){
-	for (auto it = posTail.rbegin(); it != posTail.rend(); it++)
-		it = it + 1;
-	posTail.at(sizeTail) = posHead;
+	for (int i = posTail.size()-1; i > 0; i--)
+		posTail.at(i) = posTail.at(i - 1);
+	posTail.at(0) = posHead;
 }
 
-void Snake::eatFruit(Fruit & Apple) const {
+void Snake::eatFruit(Fruit & Apple) {
 	if (Apple.getPosition() == getPosition()) {
-		std::cout << "Entrou" << std::endl << Apple.getPosition().x << ' ' << Apple.getPosition().y;
+		posTail.push_back(posHead);
 		Apple.newPosition();
-		std::cout << std::endl << Apple.getPosition().x << ' ' << Apple.getPosition().y;
 	}
 }
 
@@ -27,7 +26,6 @@ void Snake::Draw(sf::RenderWindow& window) {
 	Head.setPosition(posHead);
 	window.draw(Head);
 }
-
 
 void Snake::Update() {
 	switch (dir) {
@@ -52,18 +50,17 @@ void Snake::Update() {
 		posHead.y = 0;
 	else if (posHead.y < 0)
 		posHead.y = 480.0f - yVel;
+	updateTail();
 }
 
-Snake::Snake(sf::Vector2f posHead, int sizeTail = 0, std::string pathHead = "", std::string pathTail = "") {
+Snake::Snake(sf::Vector2f posHead, std::string pathHead = "", std::string pathTail = "") : posTail(1, posHead){
 	this->posHead = posHead;
-	this->sizeTail = sizeTail;
 	try {
-		if (!tHead.loadFromFile(pathHead) || !tTail.loadFromFile(pathTail)) {
-			throw 98;
-		}
+		tHead.loadFromFile(pathHead);
+		tTail.loadFromFile(pathTail);
 	}
-	catch (...) {
-		std::cout << "Erro ao Abrir alguma Imagem" << std::endl;
+	catch (std::exception e) {
+		std::cerr << "Erro ao abrir imagem: " << e.what() << std::endl;
 		exit(1);
 	}
 	Head.setTexture(tHead);

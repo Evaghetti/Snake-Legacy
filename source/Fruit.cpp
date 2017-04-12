@@ -1,34 +1,36 @@
 #include "Fruit.h"
 #include <iostream>
+#include <exception>
 
-int Fruit::newYPos() {
+int Fruit::newXPos() const {
+	srand(time(NULL));
+	int num = rand() % 640;
+	while(num % tFruta.getSize().x != 0)
+		num = rand() % 640;
+	return num;
+}
+int Fruit::newYPos() const {
 	srand(time(NULL));
 	int num = rand() % 480;
-	while(num%60!=0)
+	while(num % tFruta.getSize().y != 0)
 		num = rand() % 480;
 	return num;
 }
 
-int Fruit::newXPos() {
-	srand(time(NULL));
-	int num = rand() % 640;
-	while(num % 64 != 0)
-		num = rand() % 640;
-	return num;
-}
-
-Fruit::Fruit(int x, int y) {
+Fruit::Fruit(std::string caminho, int x, int y) {
 	if (x == 0)
 		x = newXPos();
 	else if (y == 0)
 		y = newYPos();
+	tFruta.loadFromFile(caminho);
+	Fruta.setTexture(tFruta);
 	position = sf::Vector2f(x, y);
 }
 
-Fruit::Fruit(sf::Vector2f tempPosition) : position(tempPosition) {
+Fruit::Fruit(sf::Vector2f tempPosition, std::string caminho) : position(tempPosition) {
 	if (tempPosition == sf::Vector2f(0, 0))
 		position = sf::Vector2f(newXPos(), newYPos());
-	tFruta.loadFromFile("images/fruit.png");
+	tFruta.loadFromFile(caminho);
 	Fruta.setTexture(tFruta);
 }
 
