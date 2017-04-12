@@ -1,5 +1,5 @@
 #include "Game.h"
-
+#include <iostream>
 Game::Game(int largura, int altura, char * titulo) : window(sf::VideoMode(largura, altura), titulo),
 													 Player({ 320.0f, 240.0f }, "images/head.png", "images/tail.png"),
 													 Apple("images/fruit.png", 64, 60)
@@ -29,6 +29,8 @@ void Game::gameUpdate() {
 			userInput(e.key.code);
 	}
 	Player.Update();
+	if (Player.isDead())
+		std::cout << "Morreu" << std::endl;
 	Player.eatFruit(Apple);
 }
 

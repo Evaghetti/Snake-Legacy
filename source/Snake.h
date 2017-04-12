@@ -14,6 +14,7 @@ class Snake {
 		void updateTail();
 	public:
 		enum DIREC { CIMA, DIREITA, BAIXO, ESQUERDA } dir;
+		bool isDead() const;
 		void Draw(sf::RenderWindow& window);
 		void eatFruit(Fruit &Apple);
 		void Update();

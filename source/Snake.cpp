@@ -20,6 +20,12 @@ void Snake::eatFruit(Fruit & Apple) {
 	}
 }
 
+bool Snake::isDead() const {
+	return std::any_of(body.begin() + 1, body.end(), [&](auto it) {
+		return it == body.at(0);
+	});
+}
+
 void Snake::Draw(sf::RenderWindow& window) {
 	for (auto it : body) {
 		Tail.setPosition(it);
