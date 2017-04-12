@@ -8,11 +8,9 @@
 class Snake {
 	private:
 		int xVel, yVel;
-		std::vector<sf::Vector2f> posTail;
+		std::vector<sf::Vector2f> body;
 		sf::Sprite Head, Tail;
 		sf::Texture tHead, tTail;
-		sf::Vector2f posHead;
-		sf::Vector2f getPosition() const;
 		void updateTail();
 	public:
 		enum DIREC { CIMA, DIREITA, BAIXO, ESQUERDA } dir;
