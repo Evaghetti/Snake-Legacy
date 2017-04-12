@@ -4,16 +4,18 @@
 
 int Fruit::newXPos() const {
 	srand(time(NULL));
-	int num = rand() % 640;
-	while(num % tFruta.getSize().x != 0)
+	int num;
+	do {
 		num = rand() % 640;
+	} while (num % tFruta.getSize().x != 0);
 	return num;
 }
 int Fruit::newYPos() const {
 	srand(time(NULL));
-	int num = rand() % 480;
-	while(num % tFruta.getSize().y != 0)
+	int num;
+	do {
 		num = rand() % 480;
+	} while (num % tFruta.getSize().y != 0);
 	return num;
 }
 

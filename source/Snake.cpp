@@ -1,5 +1,6 @@
 #include "Snake.h"
 #include <iostream>
+#include <algorithm>
 #include <exception>
 sf::Vector2f Snake::getPosition() const {
 	return posHead;
@@ -12,9 +13,13 @@ void Snake::updateTail(){
 }
 
 void Snake::eatFruit(Fruit & Apple) {
-	if (Apple.getPosition() == getPosition()) {
+	if (Apple.getPosition() == posHead) {
 		posTail.push_back(posHead);
-		Apple.newPosition();
+		while (std::any_of(posTail.begin(), posTail.end(), [&](auto a) {
+			return a == Apple.getPosition(); 
+		}) || posHead == Apple.getPosition()) {
+			Apple.newPosition();
+		}
 	}
 }
 
