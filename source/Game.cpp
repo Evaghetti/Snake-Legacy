@@ -1,7 +1,7 @@
 #include "Game.h"
 #include <iostream>
 Game::Game(int largura, int altura, char * titulo) : window(sf::VideoMode(largura, altura), titulo),
-													 Player({ 320.0f, 240.0f }, "images/head.png", "images/tail.png"),
+													 Player(0.25f, { 320.0f, 240.0f }, "images/head.png", "images/tail.png"),
 													 Apple("images/fruit.png", 64, 60)
 {
 	window.setFramerateLimit(60);

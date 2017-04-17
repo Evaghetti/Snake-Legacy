@@ -69,7 +69,7 @@ void Snake::Update(const float time) {
 	}
 }
 
-Snake::Snake(sf::Vector2f posHead, std::string pathHead = "", std::string pathTail = "") : body(1, posHead) {
+Snake::Snake(const float delay, sf::Vector2f posHead, std::string pathHead = "", std::string pathTail = "") : body(1, posHead), delay(delay), timer(0.0f) {
 	try {
 		tHead.loadFromFile(pathHead);
 		tTail.loadFromFile(pathTail);

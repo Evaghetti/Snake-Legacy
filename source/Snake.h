@@ -8,7 +8,7 @@
 class Snake {
 	private:
 		int xVel, yVel;
-		float delay = 0.1f, timer = 0.0f;
+		float delay, timer;
 		std::vector<sf::Vector2f> body;
 		sf::Vector2f prevPos;
 		sf::Sprite Head, Tail;
@@ -20,5 +20,5 @@ class Snake {
 		void Draw(sf::RenderWindow& window);
 		void eatFruit(Fruit &Apple);
 		void Update(const float time);
-		Snake(sf::Vector2f posHead ,std::string pathHead, std::string pathTail);
+		Snake(const float delay, sf::Vector2f posHead ,std::string pathHead, std::string pathTail);
 };
