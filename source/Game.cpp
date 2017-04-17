@@ -4,7 +4,7 @@ Game::Game(int largura, int altura, char * titulo) : window(sf::VideoMode(largur
 													 Player({ 320.0f, 240.0f }, "images/head.png", "images/tail.png"),
 													 Apple("images/fruit.png", 64, 60)
 {
-	window.setFramerateLimit(5);
+	window.setFramerateLimit(60);
 	tTile.loadFromFile("images/grade.png");
 	Tile.setTexture(tTile);
 }
@@ -22,13 +22,14 @@ void Game::userInput(sf::Keyboard::Key key) {
 
 void Game::gameUpdate() {
 	sf::Event e;
+	float tempoPassado = timer.restart().asSeconds();
 	while (window.pollEvent(e)) {
 		if (e.type == sf::Event::Closed)
 			window.close();
 		else if (e.type == sf::Event::KeyPressed)
 			userInput(e.key.code);
 	}
-	Player.Update();
+	Player.Update(tempoPassado);
 	if (Player.isDead())
 		std::cout << "Morreu" << std::endl;
 	Player.eatFruit(Apple);

@@ -4,14 +4,17 @@
 #include <exception>
 
 void Snake::updateTail(){
-	for (int i = body.size() - 1; i > 0; i--) {
-		body.at(i) = body.at(i - 1);
+	if (body.size() > 1) {
+		for (int i = body.size() - 1; i > 1; i--) {
+			body.at(i) = body.at(i - 1);
+		}
+		body.at(1) = prevPos;
 	}
 }
 
 void Snake::eatFruit(Fruit & Apple) {
 	if (Apple.getPosition() == body.at(0)) {
-		body.push_back(body.at(0));
+		body.push_back(prevPos);
 		while (std::any_of(body.begin(), body.end(), [&](auto a) {
 			return a == Apple.getPosition(); 
 		})) {
@@ -35,9 +38,11 @@ void Snake::Draw(sf::RenderWindow& window) {
 	window.draw(Head);
 }
 
-void Snake::Update() {
-	updateTail();
-	switch (dir) {
+void Snake::Update(const float time) {
+	timer += time;
+	if (timer > delay) {
+		prevPos = body.at(0);
+		switch (dir) {
 		case DIREC::DIREITA:
 			body.at(0).x += xVel;
 			break;
@@ -50,15 +55,18 @@ void Snake::Update() {
 		case DIREC::BAIXO:
 			body.at(0).y += yVel;
 			break;
+		}
+		if (body.at(0).x == 640)
+			body.at(0).x = 0;
+		else if (body.at(0).x  < 0)
+			body.at(0).x = 640.0f - xVel;
+		if (body.at(0).y == 480)
+			body.at(0).y = 0;
+		else if (body.at(0).y < 0)
+			body.at(0).y = 480.0f - yVel;
+		updateTail();
+		timer = 0.0f;
 	}
-	if (body.at(0).x == 640)
-		body.at(0).x = 0;
-	else if (body.at(0).x  < 0)
-		body.at(0).x = 640.0f - xVel;
-	if (body.at(0).y == 480)
-		body.at(0).y = 0;
-	else if (body.at(0).y < 0)
-		body.at(0).y = 480.0f - yVel;
 }
 
 Snake::Snake(sf::Vector2f posHead, std::string pathHead = "", std::string pathTail = "") : body(1, posHead) {

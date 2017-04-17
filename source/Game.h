@@ -11,6 +11,7 @@ class Game {
 		sf::Sprite Tile;
 		sf::Texture tTile;
 		sf::RenderWindow window;
+		sf::Clock timer;
 		void userInput(sf::Keyboard::Key key);
 		void gameUpdate();
 		void gameDraw();
