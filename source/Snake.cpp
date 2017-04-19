@@ -4,7 +4,7 @@
 #include <exception>
 
 void Snake::updateTail(){
-	if (body.size() > 1) {
+	if (body.size() > 1 && prevPos != body.at(0)) {
 		for (int i = body.size() - 1; i > 1; i--) {
 			body.at(i) = body.at(i - 1);
 		}
@@ -65,6 +65,8 @@ void Snake::Update(const float time) {
 		else if (body.at(0).y < 0)
 			body.at(0).y = 480.0f - yVel;
 		updateTail();
+		if (isDead()) 
+			xVel = yVel = 0;
 		timer = 0.0f;
 	}
 }

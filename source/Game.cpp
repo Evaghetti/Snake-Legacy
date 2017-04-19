@@ -30,8 +30,6 @@ void Game::gameUpdate() {
 			userInput(e.key.code);
 	}
 	Player.Update(tempoPassado);
-	if (Player.isDead())
-		std::cout << "Morreu" << std::endl;
 	Player.eatFruit(Apple);
 }
 
